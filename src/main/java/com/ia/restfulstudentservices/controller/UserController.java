@@ -27,7 +27,7 @@ public class UserController {
 	@Autowired
 	UserService userService;
 
-	@GetMapping(path = "/training/users")
+	@GetMapping(path = "/api/users")
 	public List<User> getAllUsers() {
 		return userService.findAllUsers();
 	}
@@ -50,6 +50,7 @@ public class UserController {
         UsernamePasswordAuthenticationToken authenticationToken = (UsernamePasswordAuthenticationToken) principal;
         User user = userService.findByUsername(authenticationToken.getName());
         user.setToken(jwtTokenProvider.generateToken(authenticationToken));
+        System.out.println("TOKEN=" + user.getToken());
         return new ResponseEntity<>(user, HttpStatus.OK);
     }
 

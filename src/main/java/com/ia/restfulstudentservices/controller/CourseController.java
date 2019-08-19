@@ -27,19 +27,19 @@ public class CourseController {
 	@Autowired
 	CourseService courseService;
 	
-	@GetMapping(path = "/training/courses")
+	@GetMapping(path = "/api/courses")
 	public List<Course> getAllCourses()
 	{
 		return courseService.getAllCourses();
 	}
 	
-	@GetMapping(path = "/training/courses/{id}")
+	@GetMapping(path = "/api/courses/{id}")
 	public Course getCourse(@PathVariable Long id)
 	{
 		return courseService.findById(id);
 	}
 		
-	@DeleteMapping(path = "/training/courses/{id}")
+	@DeleteMapping(path = "/api/courses/{id}")
 	public ResponseEntity<Void> deleteCourse(@PathVariable Long id)
 	{
 		courseService.deleteById(id);
@@ -48,7 +48,7 @@ public class CourseController {
 		
 	}
 	
-	@PostMapping(path = "/training/courses")
+	@PostMapping(path = "/api/courses")
 	public ResponseEntity<Void> createCourse(@RequestBody Course course){
 		Course createdCourse = courseService.saveCourse(course);
 		
@@ -57,7 +57,7 @@ public class CourseController {
 		return ResponseEntity.created(uri).build();
 	}
 	
-	@PutMapping(path = "/training/courses/{id}")
+	@PutMapping(path = "/api/courses/{id}")
 	public ResponseEntity<Course> updateCourse(@PathVariable long id, @RequestBody Course course) {
 		
 		Course courseUpdated = courseService.saveCourse(course);

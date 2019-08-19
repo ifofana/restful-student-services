@@ -32,19 +32,19 @@ public class StudentController {
 	@Autowired
 	CourseService courseService;
 	
-	@GetMapping(path = "/training/students")
+	@GetMapping(path = "/api/students")
 	public List<Student> getAllStudents()
 	{
 		return studentService.getAllStudents();
 	}
 	
-	@GetMapping(path = "/training/students/{id}")
+	@GetMapping(path = "/api/students/{id}")
 	public Student getStudent(@PathVariable Long id)
 	{
 		return studentService.findById(id);
 	}
 		
-	@DeleteMapping(path = "/training/students/{id}")
+	@DeleteMapping(path = "/api/students/{id}")
 	public ResponseEntity<Void> deleteStudent(@PathVariable Long id)
 	{
 		studentService.deleteById(id);
@@ -53,7 +53,7 @@ public class StudentController {
 		
 	}
 	
-	@PostMapping(path = "/training/students/{courseId}")
+	@PostMapping(path = "/api/students/{courseId}")
 	public ResponseEntity<Void> createStudent(@PathVariable Long courseId, @RequestBody Student student){
 		
 		Course aCourse = courseService.findById(courseId);
@@ -67,7 +67,7 @@ public class StudentController {
 		return ResponseEntity.created(uri).build();
 	}
 	
-	@PutMapping(path = "/training/students/{id}/courses/{courseId}")
+	@PutMapping(path = "/api/students/{id}/courses/{courseId}")
 	public ResponseEntity<Student> updateStudent(@PathVariable long id, @PathVariable long courseId, @RequestBody Student student) {
 		
 		Course aCourse = courseService.findById(courseId);

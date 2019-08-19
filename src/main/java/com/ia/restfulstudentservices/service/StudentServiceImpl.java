@@ -40,7 +40,7 @@ public class StudentServiceImpl implements StudentService {
 
 	@Override
 	public Student findByEmail(String email) {
-		return studentRepo.findByEmail(email);
+		return studentRepo.findByEmail(email).orElse(null);
 	}
 
 }
