@@ -7,4 +7,6 @@ import javax.persistence.Table;
 @Table(name = "EMERGENCY_CONTACT_INFO")
 public class ContactInfo {
 
+	public ContactInfo() {
+	}
 }
