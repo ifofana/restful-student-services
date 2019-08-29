@@ -1,6 +1,6 @@
 package com.ia.restfulstudentservices.model;
 
 public enum Role {
-	STUDENT,
+	USER,
     ADMIN
 }
