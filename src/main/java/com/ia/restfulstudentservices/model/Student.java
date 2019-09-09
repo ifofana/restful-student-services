@@ -2,13 +2,17 @@ package com.ia.restfulstudentservices.model;
 
 import java.util.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name = "STUDENT_INFO")
@@ -18,6 +22,18 @@ public class Student {
 	@Column(name = "STUDENT_ID")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
+	
+	@Column(name = "created_on")
+    private Date createdOn;
+	
+	@Column(name = "created_by")
+    private String createdBy;
+	
+	@Column(name = "updated_on")
+    private Date updatedOn;
+	
+	@Column(name = "updated_by")
+    private String updatedBy;
 	
 	@Column(name = "STUDENT_FIRST_NAME")
 	private String firstName;
@@ -46,18 +62,24 @@ public class Student {
 	@Column(name = "STUDENT_CLASS_DAY")
 	private String classDay;
 	
-	@OneToOne(mappedBy = "student")
+	@OneToOne(mappedBy = "student", cascade = CascadeType.ALL,
+			fetch = FetchType.LAZY, optional = false)
+	@JsonIgnore
 	private  Contact contact;
 	
-	@OneToOne(mappedBy = "student")
+	@OneToOne(mappedBy = "student", cascade = CascadeType.ALL,
+			fetch = FetchType.LAZY, optional = false)
+	@JsonIgnore
 	private ParentGuard parentGuard;
 	
     public Student() {
         
     }
 
-	public Student(String firstName, String middlename, String lastName, Date dob, int age, String gender,
+	public Student(String createdBy, String firstName, String middlename, String lastName, Date dob, int age, String gender,
 			String allerges, String classSelection, String classDay, Contact contact, ParentGuard parentGuard) {
+		this.createdOn = new Date();
+		this.createdBy = createdBy;
 		this.firstName = firstName;
 		this.middlename = middlename;
 		this.lastName = lastName;
@@ -77,6 +99,38 @@ public class Student {
 
 	public void setId(Long id) {
 		this.id = id;
+	}
+
+	public Date getCreatedOn() {
+		return createdOn;
+	}
+
+	public void setCreatedOn(Date createdOn) {
+		this.createdOn = createdOn;
+	}
+
+	public String getCreatedBy() {
+		return createdBy;
+	}
+
+	public void setCreatedBy(String createdBy) {
+		this.createdBy = createdBy;
+	}
+
+	public Date getUpdatedOn() {
+		return updatedOn;
+	}
+
+	public void setUpdatedOn(Date updatedOn) {
+		this.updatedOn = updatedOn;
+	}
+
+	public String getUpdatedBy() {
+		return updatedBy;
+	}
+
+	public void setUpdatedBy(String updatedBy) {
+		this.updatedBy = updatedBy;
 	}
 
 	public String getFirstName() {

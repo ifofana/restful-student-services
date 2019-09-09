@@ -53,7 +53,7 @@ public class StudentController {
 		
 	}
 	
-	@PostMapping(path = "/api/students/{courseId}")
+	@PostMapping(path = "/api/students")
 	public ResponseEntity<Void> createStudent(@RequestBody Student student){
 		
 		Student studentCreated = studentService.saveStudent(student);
@@ -63,7 +63,7 @@ public class StudentController {
 		return ResponseEntity.created(uri).build();
 	}
 	
-	@PutMapping(path = "/api/students/{id}/courses/{courseId}")
+	@PutMapping(path = "/api/students/{id}")
 	public ResponseEntity<Student> updateStudent(@PathVariable long id, @RequestBody Student student) {
 		
 		Student studentUpdated = studentService.saveStudent(student);

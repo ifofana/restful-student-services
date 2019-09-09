@@ -1,8 +1,10 @@
 package com.ia.restfulstudentservices.model;
 
-import javax.persistence.CascadeType;
+import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Table;
@@ -19,6 +21,18 @@ public class ParentGuard {
 	@Column(name = "PG_ID")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
+	
+	@Column(name = "created_on")
+    private Date createdOn;
+	
+	@Column(name = "created_by")
+    private String createdBy;
+	
+	@Column(name = "updated_on")
+    private Date updatedOn;
+	
+	@Column(name = "updated_by")
+    private String updatedBy;
 	
 	@Column(name = "PG_NAME")
 	private String name;
@@ -50,7 +64,7 @@ public class ParentGuard {
 	@Column(name = "PG_ALT_EMAIL")
 	private String altEmail;
 	
-	@OneToOne(cascade = CascadeType.ALL)
+	@OneToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "STUDENT_ID", referencedColumnName = "STUDENT_ID")
 	private Student student;
 	
@@ -60,9 +74,11 @@ public class ParentGuard {
 	public ParentGuard() {
 	}
 	
-	public ParentGuard(String name, String addressOne, String addresTwo, String city, String state, String zipCode,
+	public ParentGuard(String createdBy, String name, String addressOne, String addresTwo, String city, String state, String zipCode,
 			String phoneNumber, String altPhoneNumber, String email, String altEmail, Student student,
 			String pgRelationshipToStudent) {
+		this.createdOn = new Date();
+		this.createdBy = createdBy;
 		this.name = name;
 		this.addressOne = addressOne;
 		this.addresTwo = addresTwo;
