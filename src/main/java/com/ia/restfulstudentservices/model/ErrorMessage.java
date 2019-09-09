@@ -11,11 +11,11 @@ import javax.persistence.Table;
 import javax.persistence.Id;
 
 @Entity
-@Table(name = "Audit_Trail")
-public class AuditTrail {
+@Table(name = "Error_Message")
+public class ErrorMessage {
 	
 	@Id
-	@Column(name = "audit_id")
+	@Column(name = "error_id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
@@ -24,18 +24,18 @@ public class AuditTrail {
 	
 	@Column(name = "updated_on")
     private Date updatedOn;
+		
+	private String errorDescription;
 	
-	private Date auditTimestamp;
+	private int errorMessageNumber;
 	
-	private String auditActionRecord;
-	
-	public AuditTrail() {
+	public ErrorMessage() {
 	}
 
-	public AuditTrail(Date auditTimestamp, String auditActionRecord) {
+	public ErrorMessage(String errorDescription, int errorMessageNumber) {
 		this.createdOn = new Date();
-		this.auditTimestamp = auditTimestamp;
-		this.auditActionRecord = auditActionRecord;
+		this.errorDescription = errorDescription;
+		this.errorMessageNumber = errorMessageNumber;
 	}
 
 	public Long getId() {
@@ -62,20 +62,20 @@ public class AuditTrail {
 		this.updatedOn = updatedOn;
 	}
 
-	public Date getAuditTimestamp() {
-		return auditTimestamp;
+	public String getErrorDescription() {
+		return errorDescription;
 	}
 
-	public void setAuditTimestamp(Date auditTimestamp) {
-		this.auditTimestamp = auditTimestamp;
+	public void setErrorDescription(String errorDescription) {
+		this.errorDescription = errorDescription;
 	}
 
-	public String getAuditActionRecord() {
-		return auditActionRecord;
+	public int getErrorMessageNumber() {
+		return errorMessageNumber;
 	}
 
-	public void setAuditActionRecord(String auditActionRecord) {
-		this.auditActionRecord = auditActionRecord;
+	public void setErrorMessageNumber(int errorMessageNumber) {
+		this.errorMessageNumber = errorMessageNumber;
 	}
 
 }
