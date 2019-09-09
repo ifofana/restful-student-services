@@ -2,15 +2,12 @@ package com.ia.restfulstudentservices.model;
 
 import java.util.Date;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
-import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 @Entity
@@ -19,8 +16,7 @@ public class Student {
 
 	@Id
 	@Column(name = "STUDENT_ID")
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "student_Sequence")
-	@SequenceGenerator(name = "student_Sequence", sequenceName = "HIBERNATE_STUDENT_SEQ", initialValue = 1)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
 	@Column(name = "STUDENT_FIRST_NAME")
@@ -47,15 +43,13 @@ public class Student {
 	@Column(name = "STUDENT_CLASS_SELECTION")
 	private String classSelection;
 	
-	@Column(name = "STUDENT_CLASSL_DAY")
+	@Column(name = "STUDENT_CLASS_DAY")
 	private String classDay;
 	
-	@OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "CONTACT_RELATIONSHIP_TO_STUDENT", referencedColumnName = "CONTACT_ID")
-	private Contact contact;
+	@OneToOne(mappedBy = "student")
+	private  Contact contact;
 	
-	@OneToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "PG_RELATIONSHIP_TO_STUDENT", referencedColumnName = "PG_ID")
+	@OneToOne(mappedBy = "student")
 	private ParentGuard parentGuard;
 	
     public Student() {
@@ -63,7 +57,7 @@ public class Student {
     }
 
 	public Student(String firstName, String middlename, String lastName, Date dob, int age, String gender,
-			String allerges, String classSelection, String classDay, Contact contact) {
+			String allerges, String classSelection, String classDay, Contact contact, ParentGuard parentGuard) {
 		this.firstName = firstName;
 		this.middlename = middlename;
 		this.lastName = lastName;
@@ -74,6 +68,7 @@ public class Student {
 		this.classSelection = classSelection;
 		this.classDay = classDay;
 		this.contact = contact;
+		this.parentGuard = parentGuard;
 	}
 
 	public Long getId() {
@@ -156,13 +151,45 @@ public class Student {
 		this.classDay = classDay;
 	}
 
-	public Contact getContactInfo() {
+	public Contact getContact() {
 		return contact;
 	}
 
-	public void setContactInfo(Contact contact) {
+	public void setContact(Contact contact) {
 		this.contact = contact;
 	}
-	
+
+	public ParentGuard getParentGuard() {
+		return parentGuard;
+	}
+
+	public void setParentGuard(ParentGuard parentGuard) {
+		this.parentGuard = parentGuard;
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((id == null) ? 0 : id.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Student other = (Student) obj;
+		if (id == null) {
+			if (other.id != null)
+				return false;
+		} else if (!id.equals(other.id))
+			return false;
+		return true;
+	}
 
 }
