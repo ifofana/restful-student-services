@@ -1,5 +1,13 @@
+/*
+ * Filename: Contact.java
+ * author: Jimmy Maher
+ * Date: 06 Sept 2019
+ * Purpose: Map contact class to the contact table in dbusermanagement 
+ */
+
 package com.ia.restfulstudentservices.model;
 
+// import date class from java.util package
 import java.util.Date;
 
 import javax.persistence.Column;
