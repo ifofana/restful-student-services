@@ -75,6 +75,21 @@ public class Student {
     public Student() {
         
     }
+    
+    public Student(String createdBy, String firstName, String middlename, String lastName, Date dob, int age, String gender,
+			String allerges, String classSelection, String classDay) {
+		this.createdOn = new Date();
+		this.createdBy = createdBy;
+		this.firstName = firstName;
+		this.middlename = middlename;
+		this.lastName = lastName;
+		this.dob = dob;
+		this.age = age;
+		this.gender = gender;
+		this.allerges = allerges;
+		this.classSelection = classSelection;
+		this.classDay = classDay;
+	}
 
 	public Student(String createdBy, String firstName, String middlename, String lastName, Date dob, int age, String gender,
 			String allerges, String classSelection, String classDay, Contact contact, ParentGuard parentGuard) {

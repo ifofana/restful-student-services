@@ -68,6 +68,18 @@ public class Contact {
 	}
 	
 	public Contact(String createdBy, String name, String contactPhoneNumber, String contactAltPhoneNumber, String contactEmail,
+			String contactAltEmail, String contactRelationshipToStudent) {
+		this.createdOn = new Date();
+		this.createdBy = createdBy;
+		this.name = name;
+		this.contactPhoneNumber = contactPhoneNumber;
+		this.contactAltPhoneNumber = contactAltPhoneNumber;
+		this.contactEmail = contactEmail;
+		this.contactAltEmail = contactAltEmail;
+		this.contactRelationshipToStudent = contactRelationshipToStudent;
+	}
+	
+	public Contact(String createdBy, String name, String contactPhoneNumber, String contactAltPhoneNumber, String contactEmail,
 			String contactAltEmail, Student student, String contactRelationshipToStudent) {
 		this.createdOn = new Date();
 		this.createdBy = createdBy;

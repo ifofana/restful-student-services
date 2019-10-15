@@ -75,6 +75,23 @@ public class ParentGuard {
 	}
 	
 	public ParentGuard(String createdBy, String name, String addressOne, String addresTwo, String city, String state, String zipCode,
+			String phoneNumber, String altPhoneNumber, String email, String altEmail, String pgRelationshipToStudent) {
+		this.createdOn = new Date();
+		this.createdBy = createdBy;
+		this.name = name;
+		this.addressOne = addressOne;
+		this.addresTwo = addresTwo;
+		this.city = city;
+		this.state = state;
+		this.zipCode = zipCode;
+		this.phoneNumber = phoneNumber;
+		this.altPhoneNumber = altPhoneNumber;
+		this.email = email;
+		this.altEmail = altEmail;
+		this.pgRelationshipToStudent = pgRelationshipToStudent;
+	}
+	
+	public ParentGuard(String createdBy, String name, String addressOne, String addresTwo, String city, String state, String zipCode,
 			String phoneNumber, String altPhoneNumber, String email, String altEmail, Student student,
 			String pgRelationshipToStudent) {
 		this.createdOn = new Date();
