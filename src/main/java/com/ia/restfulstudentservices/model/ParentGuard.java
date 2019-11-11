@@ -39,34 +39,34 @@ public class ParentGuard {
     private String updatedBy;
 	
 	@Column(name = "PG_NAME")
-	private String name;
+	private String pgName;
 	
 	@Column(name = "PG_ADDRESS_ONE")
-	private String addressOne;
+	private String pgAddressOne;
 	
 	@Column(name = "PG_ADDRESS_TWO")
-	private String addresTwo;
+	private String pgAddressTwo;
 	
 	@Column(name = "PG_CITY")
-	private String city;
+	private String pgCity;
 	
 	@Column(name = "PG_STATE")
-	private String state;
+	private String pgState;
 	
 	@Column(name = "PG_ZIPCODE")
-	private String zipCode;
+	private String pgZipCode;
 	
 	@Column(name = "PG_PHONE_NUMBER")
-	private String phoneNumber;
+	private String pgPhoneNumber;
 	
 	@Column(name = "PG_ALT_PHONE_NUMBER")
-	private String altPhoneNumber;
+	private String pgAltPhoneNumber;
 	
 	@Column(name = "PG_EMAIL")
-	private String email;
+	private String pgEmail;
 	
 	@Column(name = "PG_ALT_EMAIL")
-	private String altEmail;
+	private String pgAltEmail;
 	
 	@OneToMany(mappedBy="parentGuard")
 	@JsonIgnore
@@ -78,20 +78,20 @@ public class ParentGuard {
 	public ParentGuard() {
 	}
 	
-	public ParentGuard(String createdBy, String name, String addressOne, String addresTwo, String city, String state, String zipCode,
-			String phoneNumber, String altPhoneNumber, String email, String altEmail, String pgRelationshipToStudent) {
+	public ParentGuard(String createdBy, String pgName, String pgAddressOne, String pgAddressTwo, String pgCity, String pgState, String pgZipCode, 
+			String pgPhoneNumber, String pgAltPhoneNumber, String pgEmail, String pgAltEmail, String pgRelationshipToStudent) {
 		this.createdOn = new Date();
 		this.createdBy = createdBy;
-		this.name = name;
-		this.addressOne = addressOne;
-		this.addresTwo = addresTwo;
-		this.city = city;
-		this.state = state;
-		this.zipCode = zipCode;
-		this.phoneNumber = phoneNumber;
-		this.altPhoneNumber = altPhoneNumber;
-		this.email = email;
-		this.altEmail = altEmail;
+		this.pgName = pgName;
+		this.pgAddressOne = pgAddressOne;
+		this.pgAddressTwo = pgAddressTwo;
+		this.pgCity = pgCity;
+		this.pgState = pgState;
+		this.pgZipCode = pgZipCode;
+		this.pgPhoneNumber = pgPhoneNumber;
+		this.pgAltPhoneNumber = pgAltPhoneNumber;
+		this.pgEmail = pgEmail;
+		this.pgAltEmail = pgAltEmail;
 		this.pgRelationshipToStudent = pgRelationshipToStudent;
 	}
 	
@@ -103,84 +103,84 @@ public class ParentGuard {
 		this.id = id;
 	}
 
-	public String getName() {
-		return name;
+	public String getPgName() {
+		return pgName;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setPgName(String pgName) {
+		this.pgName = pgName;
+	}
+	
+	public String getPgAddressOne() {
+		return pgAddressOne;
 	}
 
-	public String getAddressOne() {
-		return addressOne;
+	public void setPgAddressOne(String pgAddressOne) {
+		this.pgAddressOne = pgAddressOne;
+	}
+	
+	public String getPgAddressTwo() {
+		return pgAddressTwo;
 	}
 
-	public void setAddressOne(String addressOne) {
-		this.addressOne = addressOne;
+	public void setPgAddressTwo(String pgAddressTwo) {
+		this.pgAddressTwo = pgAddressTwo;
+	}
+	
+	public String getPgCity() {
+		return pgCity;
 	}
 
-	public String getAddresTwo() {
-		return addresTwo;
+	public void setPgCity(String pgCity) {
+		this.pgCity = pgCity;
+	}
+	
+	public String getPgState() {
+		return pgState;
 	}
 
-	public void setAddresTwo(String addresTwo) {
-		this.addresTwo = addresTwo;
+	public void setPgState(String pgState) {
+		this.pgState = pgState;
+	}
+	
+	public String getPgZipCode() {
+		return pgZipCode;
 	}
 
-	public String getCity() {
-		return city;
+	public void setPgZipCode(String pgZipCode) {
+		this.pgZipCode = pgZipCode;
+	}
+	
+	public String getPgPhoneNumber() {
+		return pgPhoneNumber;
 	}
 
-	public void setCity(String city) {
-		this.city = city;
+	public void setPgPhoneNumber(String pgPhoneNumber) {
+		this.pgPhoneNumber = pgPhoneNumber;
+	}
+	
+	public String getPgAltPhoneNumber() {
+		return pgAltPhoneNumber;
 	}
 
-	public String getState() {
-		return state;
+	public void setPgAltPhoneNumber(String pgAltPhoneNumber) {
+		this.pgAltPhoneNumber = pgAltPhoneNumber;
 	}
 
-	public void setState(String state) {
-		this.state = state;
+	public String getPgEmail() {
+		return pgEmail;
 	}
 
-	public String getZipCode() {
-		return zipCode;
+	public void setPgEmail(String pgEmail) {
+		this.pgEmail = pgEmail;
+	}
+	
+	public String getPgAltEmail() {
+		return pgAltEmail;
 	}
 
-	public void setZipCode(String zipCode) {
-		this.zipCode = zipCode;
-	}
-
-	public String getPhoneNumber() {
-		return phoneNumber;
-	}
-
-	public void setPhoneNumber(String phoneNumber) {
-		this.phoneNumber = phoneNumber;
-	}
-
-	public String getAltPhoneNumber() {
-		return altPhoneNumber;
-	}
-
-	public void setAltPhoneNumber(String altPhoneNumber) {
-		this.altPhoneNumber = altPhoneNumber;
-	}
-
-	public String getEmail() {
-		return email;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
-	}
-
-	public String getAltEmail() {
-		return altEmail;
-	}
-
-	public void setAltEmail(String altEmail) {
-		this.altEmail = altEmail;
+	public void setPgAltEmail(String pgAltEmail) {
+		this.pgAltEmail = pgAltEmail;
 	}
 
 	public Set<Student> getStudents() {
