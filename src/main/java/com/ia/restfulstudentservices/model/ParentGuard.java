@@ -1,6 +1,7 @@
 package com.ia.restfulstudentservices.model;
 
 import java.util.Date;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -9,8 +10,11 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 @Entity
@@ -64,9 +68,9 @@ public class ParentGuard {
 	@Column(name = "PG_ALT_EMAIL")
 	private String altEmail;
 	
-	@OneToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "STUDENT_ID", referencedColumnName = "STUDENT_ID")
-	private Student student;
+	@OneToMany(mappedBy="parentGuard")
+	@JsonIgnore
+    private Set<Student> students;
 	
 	@Column( name = "PG_RELATIONSHIP_TO_STUDENT")
 	private String pgRelationshipToStudent;
@@ -88,25 +92,6 @@ public class ParentGuard {
 		this.altPhoneNumber = altPhoneNumber;
 		this.email = email;
 		this.altEmail = altEmail;
-		this.pgRelationshipToStudent = pgRelationshipToStudent;
-	}
-	
-	public ParentGuard(String createdBy, String name, String addressOne, String addresTwo, String city, String state, String zipCode,
-			String phoneNumber, String altPhoneNumber, String email, String altEmail, Student student,
-			String pgRelationshipToStudent) {
-		this.createdOn = new Date();
-		this.createdBy = createdBy;
-		this.name = name;
-		this.addressOne = addressOne;
-		this.addresTwo = addresTwo;
-		this.city = city;
-		this.state = state;
-		this.zipCode = zipCode;
-		this.phoneNumber = phoneNumber;
-		this.altPhoneNumber = altPhoneNumber;
-		this.email = email;
-		this.altEmail = altEmail;
-		this.student = student;
 		this.pgRelationshipToStudent = pgRelationshipToStudent;
 	}
 	
@@ -198,12 +183,12 @@ public class ParentGuard {
 		this.altEmail = altEmail;
 	}
 
-	public Student getStudent() {
-		return student;
+	public Set<Student> getStudents() {
+		return students;
 	}
 
-	public void setStudent(Student student) {
-		this.student = student;
+	public void setStudents(Set<Student> students) {
+		this.students = students;
 	}
 
 	public String getPgRelationshipToStudent() {

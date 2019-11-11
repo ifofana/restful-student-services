@@ -9,6 +9,7 @@ package com.ia.restfulstudentservices.model;
 
 // import date class from java.util package
 import java.util.Date;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -17,8 +18,11 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 @Entity
@@ -43,7 +47,7 @@ public class Contact {
     private String updatedBy;
 	
 	@Column(name = "CONTACT_NAME")
-	private String name;
+	private String contactName;
 	
 	@Column(name = "CONTACT_PHONE_NUMBER")
 	private String contactPhoneNumber;
@@ -57,9 +61,9 @@ public class Contact {
 	@Column(name = "CONTACT_ALT_EMAIL")
 	private String contactAltEmail;
 	
-	@OneToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "STUDENT_ID", referencedColumnName = "STUDENT_ID")
-	private Student student;
+	@OneToMany(mappedBy="contact")
+	@JsonIgnore
+    private Set<Student> students;
 	
 	@Column(name = "CONTACT_RELATIONSHIP_TO_STUDENT")
 	private String contactRelationshipToStudent;
@@ -67,28 +71,15 @@ public class Contact {
 	public Contact() {
 	}
 	
-	public Contact(String createdBy, String name, String contactPhoneNumber, String contactAltPhoneNumber, String contactEmail,
+	public Contact(String createdBy, String contactName, String contactPhoneNumber, String contactAltPhoneNumber, String contactEmail,
 			String contactAltEmail, String contactRelationshipToStudent) {
 		this.createdOn = new Date();
 		this.createdBy = createdBy;
-		this.name = name;
+		this.contactName = contactName;
 		this.contactPhoneNumber = contactPhoneNumber;
 		this.contactAltPhoneNumber = contactAltPhoneNumber;
 		this.contactEmail = contactEmail;
 		this.contactAltEmail = contactAltEmail;
-		this.contactRelationshipToStudent = contactRelationshipToStudent;
-	}
-	
-	public Contact(String createdBy, String name, String contactPhoneNumber, String contactAltPhoneNumber, String contactEmail,
-			String contactAltEmail, Student student, String contactRelationshipToStudent) {
-		this.createdOn = new Date();
-		this.createdBy = createdBy;
-		this.name = name;
-		this.contactPhoneNumber = contactPhoneNumber;
-		this.contactAltPhoneNumber = contactAltPhoneNumber;
-		this.contactEmail = contactEmail;
-		this.contactAltEmail = contactAltEmail;
-		this.student = student;
 		this.contactRelationshipToStudent = contactRelationshipToStudent;
 	}
 	
@@ -132,12 +123,12 @@ public class Contact {
 		this.updatedBy = updatedBy;
 	}
 
-	public String getName() {
-		return name;
+	public String getContactName() {
+		return contactName;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setContactName(String contactName) {
+		this.contactName = contactName;
 	}
 
 	public String getContactPhoneNumber() {
@@ -172,12 +163,12 @@ public class Contact {
 		this.contactAltEmail = contactAltEmail;
 	}
 
-	public Student getStudent() {
-		return student;
+	public Set<Student> getStudents() {
+		return students;
 	}
 
-	public void setStudent(Student student) {
-		this.student = student;
+	public void setStudents(Set<Student> students) {
+		this.students = students;
 	}
 
 	public String getContactRelationshipToStudent() {

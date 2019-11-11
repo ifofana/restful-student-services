@@ -46,14 +46,12 @@ public class ContactServiceImpl implements ContactService {
 
 	@Override
 	public boolean existsById(long id) {
-		// TODO Auto-generated method stub
 		return contactRepo.existsById(id);
 	}
 
 	@Override
 	public Contact findById(Long id) {
-		// TODO Auto-generated method stub
-		return null;
+		return contactRepo.findById(id).get();
 	}
 
 }// end of ContactServiceImpl class

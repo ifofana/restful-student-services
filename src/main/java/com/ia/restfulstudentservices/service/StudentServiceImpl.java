@@ -20,10 +20,8 @@ public class StudentServiceImpl implements StudentService {
 	StudentRepository studentRepo;
 
 	@Override
-	public void deleteById(long id) {
-		
-		studentRepo.deleteById(id);
-		
+	public void deleteById(long id) {		
+		studentRepo.deleteById(id);		
 	}
 
 	@Override
@@ -43,7 +41,6 @@ public class StudentServiceImpl implements StudentService {
 
 	@Override
 	public boolean existsById(long id) {
-		// TODO Auto-generated method stub
 		return studentRepo.existsById(id);
 	}
 

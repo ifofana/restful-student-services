@@ -9,6 +9,8 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -62,15 +64,13 @@ public class Student {
 	@Column(name = "STUDENT_CLASS_DAY")
 	private String classDay;
 	
-	@OneToOne(mappedBy = "student", cascade = CascadeType.ALL,
-			fetch = FetchType.LAZY, optional = false)
-	@JsonIgnore
-	private  Contact contact;
+	@ManyToOne
+    @JoinColumn(name="CONTACT_ID", nullable=false)
+	private Contact contact;
 	
-	@OneToOne(mappedBy = "student", cascade = CascadeType.ALL,
-			fetch = FetchType.LAZY, optional = false)
-	@JsonIgnore
-	private ParentGuard parentGuard;
+	@ManyToOne
+    @JoinColumn(name="PARENTGUARD_ID", nullable=false)
+    private ParentGuard parentGuard;
 	
     public Student() {
         
@@ -89,23 +89,6 @@ public class Student {
 		this.allerges = allerges;
 		this.classSelection = classSelection;
 		this.classDay = classDay;
-	}
-
-	public Student(String createdBy, String firstName, String middlename, String lastName, Date dob, int age, String gender,
-			String allerges, String classSelection, String classDay, Contact contact, ParentGuard parentGuard) {
-		this.createdOn = new Date();
-		this.createdBy = createdBy;
-		this.firstName = firstName;
-		this.middlename = middlename;
-		this.lastName = lastName;
-		this.dob = dob;
-		this.age = age;
-		this.gender = gender;
-		this.allerges = allerges;
-		this.classSelection = classSelection;
-		this.classDay = classDay;
-		this.contact = contact;
-		this.parentGuard = parentGuard;
 	}
 
 	public Long getId() {
