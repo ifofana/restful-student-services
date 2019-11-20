@@ -7,6 +7,9 @@
 
 package com.ia.restfulstudentservices.controller;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.net.URI;
 import java.util.List;
 
@@ -30,6 +33,8 @@ import com.ia.restfulstudentservices.service.ContactService;
 @CrossOrigin(origins = "http://localhost:4200")
 @RestController
 public class ContactController {
+	
+	private static final Logger logger = LoggerFactory.getLogger(ContactController.class);
 	
 	@Autowired
 	ContactRepository contactRepo;
@@ -61,6 +66,10 @@ public class ContactController {
 	
 	@PostMapping(path = "/api/contacts")
 	public ResponseEntity<Void> createContact(@RequestBody Contact contact){
+		
+		logger.info("createContact ====> this is a info message");
+		logger.warn("createContact ====> this is a warn message");
+		logger.error("createContact ===> this is a error message");
 		
 		Contact contactCreated = contactService.saveContact(contact);
 		

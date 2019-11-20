@@ -1,5 +1,8 @@
 package com.ia.restfulstudentservices;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -18,10 +21,15 @@ import com.ia.restfulstudentservices.repository.StudentRepository;
 @SpringBootApplication
 public class RestfulStudentServicesApplication implements CommandLineRunner {
 	
+	private static final Logger logger = LoggerFactory.getLogger(RestfulStudentServicesApplication.class);
+	
 	@Autowired
 	private StudentRepository studentRepository;
 
 	public static void main(String[] args) {
+		logger.info("this is a info message");
+		logger.warn("this is a warn message");
+		logger.error("this is a error message");
 		SpringApplication.run(RestfulStudentServicesApplication.class, args);
 	}
 
