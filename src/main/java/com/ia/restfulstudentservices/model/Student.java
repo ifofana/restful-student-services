@@ -1,6 +1,7 @@
 package com.ia.restfulstudentservices.model;
 
 import java.util.Date;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -11,7 +12,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -64,13 +65,13 @@ public class Student {
 	@Column(name = "STUDENT_CLASS_DAY")
 	private String classDay;
 	
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name="CONTACT_ID", nullable=false)
 	private Contact contact;
 	
-	@ManyToOne
-    @JoinColumn(name="PARENTGUARD_ID", nullable=false)
-    private ParentGuard parentGuard;
+	@OneToMany(fetch = FetchType.EAGER, mappedBy="student", cascade = CascadeType.ALL)
+	@JsonIgnore
+    private Set<ParentGuard> parentGuards;
 	
     public Student() {
         
@@ -211,12 +212,12 @@ public class Student {
 		this.contact = contact;
 	}
 
-	public ParentGuard getParentGuard() {
-		return parentGuard;
+	public Set<ParentGuard> getParentGuards() {
+		return parentGuards;
 	}
 
-	public void setParentGuard(ParentGuard parentGuard) {
-		this.parentGuard = parentGuard;
+	public void setParentGuards(Set<ParentGuard> parentGuards) {
+		this.parentGuards = parentGuards;
 	}
 
 	@Override
@@ -242,6 +243,14 @@ public class Student {
 		} else if (!id.equals(other.id))
 			return false;
 		return true;
+	}
+
+	@Override
+	public String toString() {
+		return "Student [id=" + id + ", createdOn=" + createdOn + ", createdBy=" + createdBy + ", updatedOn="
+				+ updatedOn + ", updatedBy=" + updatedBy + ", firstName=" + firstName + ", middlename=" + middlename
+				+ ", lastName=" + lastName + ", dob=" + dob + ", age=" + age + ", gender=" + gender + ", allerges="
+				+ allerges + ", classSelection=" + classSelection + ", classDay=" + classDay + "]";
 	}
 
 }

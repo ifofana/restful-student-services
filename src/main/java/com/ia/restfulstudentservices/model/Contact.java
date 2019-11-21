@@ -11,6 +11,7 @@ package com.ia.restfulstudentservices.model;
 import java.util.Date;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -21,9 +22,7 @@ import javax.persistence.Table;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 
 @Entity
 @Table(name = "CONTACT_INFO")
@@ -61,7 +60,7 @@ public class Contact {
 	@Column(name = "CONTACT_ALT_EMAIL")
 	private String contactAltEmail;
 	
-	@OneToMany(mappedBy="contact")
+	@OneToMany(fetch = FetchType.EAGER, mappedBy="contact", cascade = CascadeType.ALL)
 	@JsonIgnore
     private Set<Student> students;
 	
@@ -202,6 +201,15 @@ public class Contact {
 		} else if (!id.equals(other.id))
 			return false;
 		return true;
+	}
+
+	@Override
+	public String toString() {
+		return "Contact [id=" + id + ", createdOn=" + createdOn + ", createdBy=" + createdBy + ", updatedOn="
+				+ updatedOn + ", updatedBy=" + updatedBy + ", contactName=" + contactName + ", contactPhoneNumber="
+				+ contactPhoneNumber + ", contactAltPhoneNumber=" + contactAltPhoneNumber + ", contactEmail="
+				+ contactEmail + ", contactAltEmail=" + contactAltEmail
+				+ ", contactRelationshipToStudent=" + contactRelationshipToStudent + "]";
 	}
 	
 }

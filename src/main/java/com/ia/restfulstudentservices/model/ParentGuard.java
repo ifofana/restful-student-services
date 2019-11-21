@@ -1,21 +1,16 @@
 package com.ia.restfulstudentservices.model;
 
 import java.util.Date;
-import java.util.Set;
-
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Table;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
+import javax.persistence.ManyToOne;
 
 @Entity
 @Table(name = "PARENTGUARD_INFO")
@@ -68,12 +63,12 @@ public class ParentGuard {
 	@Column(name = "PG_ALT_EMAIL")
 	private String pgAltEmail;
 	
-	@OneToMany(mappedBy="parentGuard")
-	@JsonIgnore
-    private Set<Student> students;
-	
 	@Column( name = "PG_RELATIONSHIP_TO_STUDENT")
 	private String pgRelationshipToStudent;
+	
+	@ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name="STUDENT_ID", nullable=true)
+    private Student student;
 	
 	public ParentGuard() {
 	}
@@ -183,20 +178,20 @@ public class ParentGuard {
 		this.pgAltEmail = pgAltEmail;
 	}
 
-	public Set<Student> getStudents() {
-		return students;
-	}
-
-	public void setStudents(Set<Student> students) {
-		this.students = students;
-	}
-
 	public String getPgRelationshipToStudent() {
 		return pgRelationshipToStudent;
 	}
 
 	public void setPgRelationshipToStudent(String pgRelationshipToStudent) {
 		this.pgRelationshipToStudent = pgRelationshipToStudent;
+	}
+	
+	public Student getStudent() {
+		return student;
+	}
+
+	public void setStudent(Student student) {
+		this.student = student;
 	}
 
 	@Override
@@ -222,6 +217,16 @@ public class ParentGuard {
 		} else if (!id.equals(other.id))
 			return false;
 		return true;
+	}
+
+	@Override
+	public String toString() {
+		return "ParentGuard [id=" + id + ", createdOn=" + createdOn + ", createdBy=" + createdBy + ", updatedOn="
+				+ updatedOn + ", updatedBy=" + updatedBy + ", pgName=" + pgName + ", pgAddressOne=" + pgAddressOne
+				+ ", pgAddressTwo=" + pgAddressTwo + ", pgCity=" + pgCity + ", pgState=" + pgState + ", pgZipCode="
+				+ pgZipCode + ", pgPhoneNumber=" + pgPhoneNumber + ", pgAltPhoneNumber=" + pgAltPhoneNumber
+				+ ", pgEmail=" + pgEmail + ", pgAltEmail=" + pgAltEmail + ", pgRelationshipToStudent="
+				+ pgRelationshipToStudent + "]";
 	}
 	
 }
