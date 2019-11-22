@@ -3,7 +3,6 @@ package com.ia.restfulstudentservices;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
@@ -16,9 +15,12 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import com.ia.restfulstudentservices.model.Contact;
+import com.ia.restfulstudentservices.model.Employee;
+import com.ia.restfulstudentservices.model.Employee_Address;
 import com.ia.restfulstudentservices.model.ParentGuard;
 import com.ia.restfulstudentservices.model.Student;
 import com.ia.restfulstudentservices.repository.ContactRepository;
+import com.ia.restfulstudentservices.repository.EmployeeRepository;
 
 @SpringBootApplication
 public class RestfulStudentServicesApplication implements CommandLineRunner {
@@ -26,6 +28,8 @@ public class RestfulStudentServicesApplication implements CommandLineRunner {
 	private static final Logger logger = LoggerFactory.getLogger(RestfulStudentServicesApplication.class);
 	
 	@Autowired private ContactRepository contactRepository;
+	
+	@Autowired private EmployeeRepository employeeRepository;
 
 	public static void main(String[] args) {
 		logger.info("this is a info message");
@@ -50,7 +54,6 @@ public class RestfulStudentServicesApplication implements CommandLineRunner {
 		student1.setFirstName("Jamil");
 		student1.setMiddlename("I.");
 		student1.setLastName("Fofana");
-//		//SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy MMM dd HH:mm:ss");
 		Calendar calendar1 = new GregorianCalendar(2009,05,05);
 		student1.setDob(calendar1.getTime());
 		student1.setAge(10);
@@ -66,12 +69,11 @@ public class RestfulStudentServicesApplication implements CommandLineRunner {
 		student2.setFirstName("Mariam");
 		student2.setMiddlename("I.");
 		student2.setLastName("Fofana");
-		//SimpleDateFormat sdf2 = new SimpleDateFormat("yyyy MMM dd HH:mm:ss");
 		Calendar calendar2 = new GregorianCalendar(2012,11,28);
 		student2.setDob(calendar2.getTime());
 		student2.setAge(6);
 		student2.setGender("Female");
-		//student2.setAllerges("");
+		student2.setAllerges("No allergies");
 		student2.setClassDay("Saturday");
 		student2.setClassSelection("foundtion");
 		student2.setCreatedBy("SystemTest");
@@ -101,6 +103,33 @@ public class RestfulStudentServicesApplication implements CommandLineRunner {
 		contact.setStudents(studentSet);
 		
 		Contact contactCreated = contactRepository.save(contact);
+		
+		Employee employee = new Employee();
+        employee.setEmpName("JIP");
+        
+        Employee_Address employeeAddress1 = new Employee_Address();
+        employeeAddress1.setStreet("Street 1");
+        employeeAddress1.setCity("City 1");
+        employeeAddress1.setCountry("Country 1");
+        employeeAddress1.setState("State 1");
+        employeeAddress1.setEmployee(employee);
+        
+        
+        Employee_Address employeeAddress2 = new Employee_Address();
+        employeeAddress2.setStreet("Street 2");
+        employeeAddress2.setCity("City 2");
+        employeeAddress2.setCountry("Country 2");
+        employeeAddress2.setState("State 2");
+        employeeAddress2.setEmployee(employee);
+        
+        Set<Employee_Address> employeeAddressSet = new HashSet();
+        employeeAddressSet.add(employeeAddress1);
+        employeeAddressSet.add(employeeAddress2);
+        
+        employee.setEmployeeAddress(employeeAddressSet);
+        
+        employeeRepository.save(employee);
+        System.out.println("Employee and Employee Address saved successfully!!");
 		
 	}
 
