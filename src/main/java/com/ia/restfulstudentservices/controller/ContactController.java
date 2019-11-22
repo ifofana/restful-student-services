@@ -73,6 +73,8 @@ public class ContactController {
 		
 		Contact contactCreated = contactService.saveContact(contact);
 		
+		logger.info("Contact and Contact Student saved successfully!!");
+		
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(contactCreated.getId( )).toUri( );
 		
 		return ResponseEntity.created(uri).build( );
