@@ -71,7 +71,7 @@ public class Contact {
 	}
 	
 	public Contact(String createdBy, String contactName, String contactPhoneNumber, String contactAltPhoneNumber, String contactEmail,
-			String contactAltEmail, String contactRelationshipToStudent) {
+			String contactAltEmail, String contactRelationshipToStudent, Set<Student> students) {
 		this.createdOn = new Date();
 		this.createdBy = createdBy;
 		this.contactName = contactName;
@@ -80,6 +80,7 @@ public class Contact {
 		this.contactEmail = contactEmail;
 		this.contactAltEmail = contactAltEmail;
 		this.contactRelationshipToStudent = contactRelationshipToStudent;
+		this.students = students;
 	}
 	
 	public Long getId() {

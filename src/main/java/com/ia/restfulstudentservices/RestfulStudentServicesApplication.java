@@ -84,20 +84,46 @@ public class RestfulStudentServicesApplication implements CommandLineRunner {
 		studentSet.add(student1);
 		studentSet.add(student2);
 		
-		ParentGuard pg = new ParentGuard();
-		pg.setPgName("Aminata NDiaye");
-		pg.setPgAddressOne("18930 Grotto Lane");
-		pg.setPgCity("Germantown");
-		pg.setPgState("Maryland");
-		pg.setPgZipCode("20874");
-		pg.setPgPhoneNumber("857.991.6529");
-		pg.setPgEmail("ndiaye.aminata@gmail.com");
-		pg.setPgAltEmail("firstami@hotmail.com");
-		pg.setPgRelationshipToStudent("Step-Mother");		
-		pg.setStudent(student1);
+		ParentGuard pg1 = new ParentGuard();
+		pg1.setPgName("Aminata NDiaye");
+		pg1.setPgAddressOne("18930 Grotto Lane");
+		pg1.setPgCity("Germantown");
+		pg1.setPgState("Maryland");
+		pg1.setPgZipCode("20874");
+		pg1.setPgPhoneNumber("857.991.6529");
+		pg1.setPgEmail("ndiaye.aminata@gmail.com");
+		pg1.setPgAltEmail("firstami@hotmail.com");
+		pg1.setPgRelationshipToStudent("Step-Mother");		
+		pg1.setStudent(student1);
+		
+		ParentGuard pg3 = new ParentGuard();
+        pg3.setPgName("Habi Fall");
+        pg3.setPgAddressOne("7245 Grey Eagle Court");
+        pg3.setPgCity("Germantown");
+        pg3.setPgState("Maryland");
+        pg3.setPgZipCode("20874");
+        pg3.setPgPhoneNumber("321.567.8989");
+        pg3.setPgEmail("Habi.Fall@gmail.com");
+        pg3.setPgAltEmail("firsthabi@hotmail.com");
+        pg3.setPgRelationshipToStudent("Aunty");		
+        pg3.setStudent(student1);
+        
+        ParentGuard pg2 = new ParentGuard();
+        pg2.setPgName("Binta Fall");
+        pg2.setPgAddressOne("7245 Grey Eagle Court");
+        pg2.setPgCity("Germantown");
+        pg2.setPgState("Maryland");
+        pg2.setPgZipCode("20874");
+        pg2.setPgPhoneNumber("321.567.8989");
+        pg2.setPgEmail("Binta.Fall@gmail.com");
+        pg2.setPgAltEmail("first_binta@hotmail.com");
+        pg2.setPgRelationshipToStudent("Cousin");		
+        pg2.setStudent(student1);
 		
 		Set<ParentGuard> pgSet = new HashSet<ParentGuard>();
-		pgSet.add(pg);
+		pgSet.add(pg1);
+		pgSet.add(pg2);
+		pgSet.add(pg3);
 		
 		student1.setParentGuards(pgSet);
 		contact.setStudents(studentSet);

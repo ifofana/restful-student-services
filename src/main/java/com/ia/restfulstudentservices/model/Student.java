@@ -78,7 +78,7 @@ public class Student {
     }
     
     public Student(String createdBy, String firstName, String middlename, String lastName, Date dob, int age, String gender,
-			String allerges, String classSelection, String classDay) {
+			String allerges, String classSelection, String classDay, Contact contact, Set<ParentGuard> parentGuards) {
 		this.createdOn = new Date();
 		this.createdBy = createdBy;
 		this.firstName = firstName;
@@ -90,6 +90,8 @@ public class Student {
 		this.allerges = allerges;
 		this.classSelection = classSelection;
 		this.classDay = classDay;
+		this.contact = contact;
+		this.parentGuards = parentGuards;
 	}
 
 	public Long getId() {
@@ -220,30 +222,30 @@ public class Student {
 		this.parentGuards = parentGuards;
 	}
 
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((id == null) ? 0 : id.hashCode());
-		return result;
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Student other = (Student) obj;
-		if (id == null) {
-			if (other.id != null)
-				return false;
-		} else if (!id.equals(other.id))
-			return false;
-		return true;
-	}
+//	@Override
+//	public int hashCode() {
+//		final int prime = 31;
+//		int result = 1;
+//		result = prime * result + ((id == null) ? 0 : id.hashCode());
+//		return result;
+//	}
+//
+//	@Override
+//	public boolean equals(Object obj) {
+//		if (this == obj)
+//			return true;
+//		if (obj == null)
+//			return false;
+//		if (getClass() != obj.getClass())
+//			return false;
+//		Student other = (Student) obj;
+//		if (id == null) {
+//			if (other.id != null)
+//				return false;
+//		} else if (!id.equals(other.id))
+//			return false;
+//		return true;
+//	}
 
 	@Override
 	public String toString() {
