@@ -50,86 +50,87 @@ public class ContactServiceImpl implements ContactService {
 		
 		logger.info("<<LOG>>1");
 		logger.info("<<LOG>>2");
-        Student student1 = new Student();		
-        student1.setFirstName("Imran");
-        student1.setMiddlename("");
-        student1.setLastName("Hossein");
-        Calendar calendar1 = new GregorianCalendar(2010,01,07);
-        student1.setDob(calendar1.getTime());
-        student1.setAge(9);
-        student1.setGender("Male");
-        student1.setAllerges("Smoke/Jelly");
-        student1.setClassDay("Saturday");
-        student1.setClassSelection("intermediate");
-        student1.setCreatedBy("SystemTest");
-        student1.setCreatedOn(new Date());
-        student1.setContact(c);
-        
-        Student student2 = new Student();
-		student2.setFirstName("Mariam");
-		student2.setMiddlename("I.");
-		student2.setLastName("Fofana");
-		Calendar calendar2 = new GregorianCalendar(2012,11,28);
-		student2.setDob(calendar2.getTime());
-		student2.setAge(6);
-		student2.setGender("Female");
-		student2.setAllerges("N/A");
-		student2.setClassDay("Saturday");
-		student2.setClassSelection("foundtion");
-		student2.setCreatedBy("SystemTest");
-		student2.setCreatedOn(new Date());
-		student2.setContact(c);
-
-        Set<Student> studentSet = new HashSet<Student>();
-        studentSet.add(student1);
-        studentSet.add(student2);
-
-        ParentGuard pg1 = new ParentGuard();
-        pg1.setPgName("Habi Fall");
-        pg1.setPgAddressOne("7245 Grey Eagle Court");
-        pg1.setPgCity("Germantown");
-        pg1.setPgState("Maryland");
-        pg1.setPgZipCode("20874");
-        pg1.setPgPhoneNumber("321.567.8989");
-        pg1.setPgEmail("Habi.Fall@gmail.com");
-        pg1.setPgAltEmail("firsthabi@hotmail.com");
-        pg1.setPgRelationshipToStudent("Step-Mother");		
-        pg1.setStudent(student1);
-        
-        ParentGuard pg2 = new ParentGuard();
-        pg2.setPgName("Ndeye Awa Fall");
-        pg2.setPgAddressOne("7245 Grey Eagle Court");
-        pg2.setPgCity("Germantown");
-        pg2.setPgState("Maryland");
-        pg2.setPgZipCode("20874");
-        pg2.setPgPhoneNumber("321.567.8989");
-        pg2.setPgEmail("Ndeye.Fall@gmail.com");
-        pg2.setPgAltEmail("firstndeye@hotmail.com");
-        pg2.setPgRelationshipToStudent("Step-Sister");		
-        pg2.setStudent(student1);
-
-        Set<ParentGuard> pgSet = new HashSet<ParentGuard>();
-        pgSet.add(pg1);
-        pgSet.add(pg2);
-
-        student1.setParentGuards(pgSet);		
-        c.setStudents(studentSet);
+//        Student student1 = new Student();		
+//        student1.setFirstName("Imran");
+//        student1.setMiddlename("");
+//        student1.setLastName("Hossein");
+//        Calendar calendar1 = new GregorianCalendar(2010,01,07);
+//        student1.setDob(calendar1.getTime());
+//        student1.setAge(9);
+//        student1.setGender("Male");
+//        student1.setAllerges("Smoke/Jelly");
+//        student1.setClassDay("Saturday");
+//        student1.setClassSelection("intermediate");
+//        student1.setCreatedBy("SystemTest");
+//        student1.setCreatedOn(new Date());
+//        student1.setContact(c);
+//        
+//        Student student2 = new Student();
+//		student2.setFirstName("Mariam");
+//		student2.setMiddlename("I.");
+//		student2.setLastName("Fofana");
+//		Calendar calendar2 = new GregorianCalendar(2012,11,28);
+//		student2.setDob(calendar2.getTime());
+//		student2.setAge(6);
+//		student2.setGender("Female");
+//		student2.setAllerges("N/A");
+//		student2.setClassDay("Saturday");
+//		student2.setClassSelection("foundtion");
+//		student2.setCreatedBy("SystemTest");
+//		student2.setCreatedOn(new Date());
+//		student2.setContact(c);
+//
+//        Set<Student> studentSet = new HashSet<Student>();
+//        studentSet.add(student1);
+//        studentSet.add(student2);
+//
+//        ParentGuard pg1 = new ParentGuard();
+//        pg1.setPgName("Habi Fall");
+//        pg1.setPgAddressOne("7245 Grey Eagle Court");
+//        pg1.setPgCity("Germantown");
+//        pg1.setPgState("Maryland");
+//        pg1.setPgZipCode("20874");
+//        pg1.setPgPhoneNumber("321.567.8989");
+//        pg1.setPgEmail("Habi.Fall@gmail.com");
+//        pg1.setPgAltEmail("firsthabi@hotmail.com");
+//        pg1.setPgRelationshipToStudent("Step-Mother");		
+//        pg1.setStudent(student1);
+//        
+//        ParentGuard pg2 = new ParentGuard();
+//        pg2.setPgName("Ndeye Awa Fall");
+//        pg2.setPgAddressOne("7245 Grey Eagle Court");
+//        pg2.setPgCity("Germantown");
+//        pg2.setPgState("Maryland");
+//        pg2.setPgZipCode("20874");
+//        pg2.setPgPhoneNumber("321.567.8989");
+//        pg2.setPgEmail("Ndeye.Fall@gmail.com");
+//        pg2.setPgAltEmail("firstndeye@hotmail.com");
+//        pg2.setPgRelationshipToStudent("Step-Sister");		
+//        pg2.setStudent(student1);
+//
+//        Set<ParentGuard> pgSet = new HashSet<ParentGuard>();
+//        pgSet.add(pg1);
+//        pgSet.add(pg2);
+//
+//        student1.setParentGuards(pgSet);		
+//        c.setStudents(studentSet);
         logger.info("<<LOG>>3");
         
-        Set<Student> sSet = c.getStudents(); 
-        if(sSet != null && sSet.size() > 0) {
-        	for (Student s : sSet) {
-    			if(s != null)
-    				logger.info("<<s>>:" + s.toString());
-    			Set<ParentGuard> pSet = s.getParentGuards();
-    				if(pSet != null && pSet.size() > 0) {
-    					for (ParentGuard p : pSet) {
-							if(p != null)
-								logger.info("<<p>>:"+p.toString());
-						}
-    				}
-    		}
-		}
+//        Set<Student> sSet = c.getStudents(); 
+//        logger.info("sSet.size="+sSet.size());
+//        if(sSet != null && sSet.size() > 0) {
+//        	for (Student s : sSet) {
+//    			if(s != null)
+//    				logger.info("<<s>>:" + s.toString());
+//    			Set<ParentGuard> pSet = s.getParentGuards();
+//    				if(pSet != null && pSet.size() > 0) {
+//    					for (ParentGuard p : pSet) {
+//							if(p != null)
+//								logger.info("<<p>>:"+p.toString());
+//						}
+//    				}
+//    		}
+//		}
         
 		return contactRepo.save(c);
 	}
