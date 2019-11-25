@@ -206,11 +206,31 @@ public class Contact {
 
 	@Override
 	public String toString() {
-		return "Contact [id=" + id + ", createdOn=" + createdOn + ", createdBy=" + createdBy + ", updatedOn="
-				+ updatedOn + ", updatedBy=" + updatedBy + ", contactName=" + contactName + ", contactPhoneNumber="
-				+ contactPhoneNumber + ", contactAltPhoneNumber=" + contactAltPhoneNumber + ", contactEmail="
-				+ contactEmail + ", contactAltEmail=" + contactAltEmail
-				+ ", contactRelationshipToStudent=" + contactRelationshipToStudent + "]";
+		StringBuilder builder = new StringBuilder();
+		builder.append("Contact [id=");
+		builder.append(id);
+		builder.append(", createdOn=");
+		builder.append(createdOn);
+		builder.append(", createdBy=");
+		builder.append(createdBy);
+		builder.append(", updatedOn=");
+		builder.append(updatedOn);
+		builder.append(", updatedBy=");
+		builder.append(updatedBy);
+		builder.append(", contactName=");
+		builder.append(contactName);
+		builder.append(", contactPhoneNumber=");
+		builder.append(contactPhoneNumber);
+		builder.append(", contactAltPhoneNumber=");
+		builder.append(contactAltPhoneNumber);
+		builder.append(", contactEmail=");
+		builder.append(contactEmail);
+		builder.append(", contactAltEmail=");
+		builder.append(contactAltEmail);
+		builder.append(", contactRelationshipToStudent=");
+		builder.append(contactRelationshipToStudent);
+		builder.append("]");		
+		return builder.toString();
 	}
 	
 }

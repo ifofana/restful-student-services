@@ -91,4 +91,11 @@ public class User implements Serializable {
     public void setToken(String token) {
         this.token = token;
     }
+
+	@Override
+	public String toString() {
+		return String.format("User [id=%s, name=%s, username=%s, password=%s, role=%s, token=%s]", id, name, username,
+				password, role, token);
+	}
+    
 }

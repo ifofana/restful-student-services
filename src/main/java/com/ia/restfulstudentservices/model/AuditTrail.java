@@ -78,4 +78,21 @@ public class AuditTrail {
 		this.auditActionRecord = auditActionRecord;
 	}
 
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("AuditTrail [id=");
+		builder.append(id);
+		builder.append(", createdOn=");
+		builder.append(createdOn);
+		builder.append(", updatedOn=");
+		builder.append(updatedOn);
+		builder.append(", auditTimestamp=");
+		builder.append(auditTimestamp);
+		builder.append(", auditActionRecord=");
+		builder.append(auditActionRecord);
+		builder.append("]");
+		return builder.toString();
+	}
+
 }

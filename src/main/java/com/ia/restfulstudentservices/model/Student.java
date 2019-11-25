@@ -249,10 +249,37 @@ public class Student {
 
 	@Override
 	public String toString() {
-		return "Student [id=" + id + ", createdOn=" + createdOn + ", createdBy=" + createdBy + ", updatedOn="
-				+ updatedOn + ", updatedBy=" + updatedBy + ", firstName=" + firstName + ", middlename=" + middlename
-				+ ", lastName=" + lastName + ", dob=" + dob + ", age=" + age + ", gender=" + gender + ", allerges="
-				+ allerges + ", classSelection=" + classSelection + ", classDay=" + classDay + "]";
+		StringBuilder builder = new StringBuilder();
+		builder.append("Student [id=");
+		builder.append(id);
+		builder.append(", createdOn=");
+		builder.append(createdOn);
+		builder.append(", createdBy=");
+		builder.append(createdBy);
+		builder.append(", updatedOn=");
+		builder.append(updatedOn);
+		builder.append(", updatedBy=");
+		builder.append(updatedBy);
+		builder.append(", firstName=");
+		builder.append(firstName);
+		builder.append(", middlename=");
+		builder.append(middlename);
+		builder.append(", lastName=");
+		builder.append(lastName);
+		builder.append(", dob=");
+		builder.append(dob);
+		builder.append(", age=");
+		builder.append(age);
+		builder.append(", gender=");
+		builder.append(gender);
+		builder.append(", allerges=");
+		builder.append(allerges);
+		builder.append(", classSelection=");
+		builder.append(classSelection);
+		builder.append(", classDay=");
+		builder.append(classDay);
+		builder.append("]");		
+		return builder.toString();
 	}
 
 }

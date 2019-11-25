@@ -136,4 +136,31 @@ public class Payment {
 		this.paymentCreditCardCecurityCode = paymentCreditCardCecurityCode;
 	}
 
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("Payment [id=");
+		builder.append(id);
+		builder.append(", createdOn=");
+		builder.append(createdOn);
+		builder.append(", updatedOn=");
+		builder.append(updatedOn);
+		builder.append(", paymentOpeningPayment=");
+		builder.append(paymentOpeningPayment);
+		builder.append(", paymentReceivedAmount=");
+		builder.append(paymentReceivedAmount);
+		builder.append(", paymentOutstandingBalanceAmount=");
+		builder.append(paymentOutstandingBalanceAmount);
+		builder.append(", payment_method=");
+		builder.append(payment_method);
+		builder.append(", paymentCreditCardNumber=");
+		builder.append(paymentCreditCardNumber);
+		builder.append(", paymentCreditCardExp=");
+		builder.append(paymentCreditCardExp);
+		builder.append(", paymentCreditCardCecurityCode=");
+		builder.append(paymentCreditCardCecurityCode);
+		builder.append("]");
+		return builder.toString();
+	}
+
 }

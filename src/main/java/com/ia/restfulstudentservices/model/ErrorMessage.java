@@ -78,4 +78,21 @@ public class ErrorMessage {
 		this.errorMessageNumber = errorMessageNumber;
 	}
 
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("ErrorMessage [id=");
+		builder.append(id);
+		builder.append(", createdOn=");
+		builder.append(createdOn);
+		builder.append(", updatedOn=");
+		builder.append(updatedOn);
+		builder.append(", errorDescription=");
+		builder.append(errorDescription);
+		builder.append(", errorMessageNumber=");
+		builder.append(errorMessageNumber);
+		builder.append("]");
+		return builder.toString();
+	}
+
 }

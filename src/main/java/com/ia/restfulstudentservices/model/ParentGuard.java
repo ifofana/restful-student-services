@@ -222,12 +222,40 @@ public class ParentGuard {
 
 	@Override
 	public String toString() {
-		return "ParentGuard [id=" + id + ", createdOn=" + createdOn + ", createdBy=" + createdBy + ", updatedOn="
-				+ updatedOn + ", updatedBy=" + updatedBy + ", pgName=" + pgName + ", pgAddressOne=" + pgAddressOne
-				+ ", pgAddressTwo=" + pgAddressTwo + ", pgCity=" + pgCity + ", pgState=" + pgState + ", pgZipCode="
-				+ pgZipCode + ", pgPhoneNumber=" + pgPhoneNumber + ", pgAltPhoneNumber=" + pgAltPhoneNumber
-				+ ", pgEmail=" + pgEmail + ", pgAltEmail=" + pgAltEmail + ", pgRelationshipToStudent="
-				+ pgRelationshipToStudent + "]";
+		StringBuilder builder = new StringBuilder();
+		builder.append("ParentGuard [id=");
+		builder.append(id);
+		builder.append(", createdOn=");
+		builder.append(createdOn);
+		builder.append(", createdBy=");
+		builder.append(createdBy);
+		builder.append(", updatedOn=");
+		builder.append(updatedOn);
+		builder.append(", updatedBy=");
+		builder.append(updatedBy);
+		builder.append(", pgName=");
+		builder.append(pgName);
+		builder.append(", pgAddressOne=");
+		builder.append(pgAddressOne);
+		builder.append(", pgAddressTwo=");
+		builder.append(pgAddressTwo);
+		builder.append(", pgCity=");
+		builder.append(pgCity);
+		builder.append(", pgState=");
+		builder.append(pgState);
+		builder.append(", pgZipCode=");
+		builder.append(pgZipCode);
+		builder.append(", pgPhoneNumber=");
+		builder.append(pgPhoneNumber);
+		builder.append(", pgAltPhoneNumber=");
+		builder.append(pgAltPhoneNumber);
+		builder.append(", pgEmail=");
+		builder.append(pgEmail);
+		builder.append(", pgAltEmail=");
+		builder.append(pgAltEmail);
+		builder.append(", pgRelationshipToStudent=");
+		builder.append("]");		
+		return builder.toString();
 	}
 	
 }
