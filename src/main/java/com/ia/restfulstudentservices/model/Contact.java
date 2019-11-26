@@ -61,7 +61,7 @@ public class Contact {
 	private String contactAltEmail;
 	
 	@OneToMany(fetch = FetchType.EAGER, mappedBy="contact", cascade = CascadeType.ALL)
-	@JsonIgnore
+	// @JsonIgnore
     private Set<Student> students;
 	
 	@Column(name = "CONTACT_RELATIONSHIP_TO_STUDENT")
@@ -229,6 +229,8 @@ public class Contact {
 		builder.append(contactAltEmail);
 		builder.append(", contactRelationshipToStudent=");
 		builder.append(contactRelationshipToStudent);
+		builder.append(",students=");
+		builder.append(students);
 		builder.append("]");		
 		return builder.toString();
 	}

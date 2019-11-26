@@ -66,19 +66,19 @@ public class Student {
 	private String classDay;
 	
 	@ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name="CONTACT_ID", nullable=false)
+    @JoinColumn(name="CONTACT_ID", nullable=true)
 	private Contact contact;
 	
 	@OneToMany(fetch = FetchType.EAGER, mappedBy="student", cascade = CascadeType.ALL)
-	@JsonIgnore
-    private Set<ParentGuard> parentGuards;
+	// @JsonIgnore
+    private Set<ParentGuard> parentGuardians;
 	
     public Student() {
         
     }
     
     public Student(String createdBy, String firstName, String middlename, String lastName, Date dob, int age, String gender,
-			String allerges, String classSelection, String classDay, Contact contact, Set<ParentGuard> parentGuards) {
+			String allerges, String classSelection, String classDay, Contact contact, Set<ParentGuard> parentGuardians) {
 		this.createdOn = new Date();
 		this.createdBy = createdBy;
 		this.firstName = firstName;
@@ -91,7 +91,7 @@ public class Student {
 		this.classSelection = classSelection;
 		this.classDay = classDay;
 		this.contact = contact;
-		this.parentGuards = parentGuards;
+		this.parentGuardians = parentGuardians;
 	}
 
 	public Long getId() {
@@ -214,12 +214,12 @@ public class Student {
 		this.contact = contact;
 	}
 
-	public Set<ParentGuard> getParentGuards() {
-		return parentGuards;
+	public Set<ParentGuard> getParentGuardians() {
+		return parentGuardians;
 	}
 
-	public void setParentGuards(Set<ParentGuard> parentGuards) {
-		this.parentGuards = parentGuards;
+	public void setParentGuardians(Set<ParentGuard> parentGuardians) {
+		this.parentGuardians = parentGuardians;
 	}
 
 //	@Override
@@ -278,6 +278,8 @@ public class Student {
 		builder.append(classSelection);
 		builder.append(", classDay=");
 		builder.append(classDay);
+		builder.append(", parentGuards=");
+		builder.append(parentGuardians);
 		builder.append("]");		
 		return builder.toString();
 	}
