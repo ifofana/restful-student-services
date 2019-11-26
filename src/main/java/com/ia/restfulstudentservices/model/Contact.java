@@ -22,6 +22,7 @@ import javax.persistence.Table;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 
 @Entity
@@ -29,7 +30,6 @@ import javax.persistence.OneToMany;
 public class Contact {
 	
 	@Id
-	@Column(name = "CONTACT_ID")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
@@ -60,8 +60,8 @@ public class Contact {
 	@Column(name = "CONTACT_ALT_EMAIL")
 	private String contactAltEmail;
 	
-	@OneToMany(fetch = FetchType.EAGER, mappedBy="contact", cascade = CascadeType.ALL)
-	// @JsonIgnore
+	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@JoinColumn(name = "CONTACT_ID")
     private Set<Student> students;
 	
 	@Column(name = "CONTACT_RELATIONSHIP_TO_STUDENT")

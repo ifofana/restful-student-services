@@ -8,6 +8,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -17,7 +19,6 @@ import javax.persistence.ManyToOne;
 public class ParentGuard {
 	
 	@Id
-	@Column(name = "PG_ID")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
@@ -68,6 +69,7 @@ public class ParentGuard {
 	
 	@ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name="STUDENT_ID", nullable=true)
+	@JsonIgnore
     private Student student;
 	
 	public ParentGuard() {

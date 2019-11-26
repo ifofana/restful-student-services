@@ -22,7 +22,6 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 public class Student {
 
 	@Id
-	@Column(name = "STUDENT_ID")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
@@ -67,10 +66,11 @@ public class Student {
 	
 	@ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name="CONTACT_ID", nullable=true)
+	@JsonIgnore
 	private Contact contact;
 	
-	@OneToMany(fetch = FetchType.EAGER, mappedBy="student", cascade = CascadeType.ALL)
-	// @JsonIgnore
+	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@JoinColumn(name = "STUDENT_ID")
     private Set<ParentGuard> parentGuardians;
 	
     public Student() {
