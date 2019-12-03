@@ -8,13 +8,17 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIdentityReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
 @Entity
+@JsonIdentityInfo(generator=ObjectIdGenerators.PropertyGenerator.class, property="id")
 @Table(name = "PARENTGUARD_INFO")
 public class ParentGuard {
 	
@@ -69,7 +73,7 @@ public class ParentGuard {
 	
 	@ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name="STUDENT_ID", nullable=true)
-	@JsonIgnore
+	@JsonIdentityReference(alwaysAsId=true)
     private Student student;
 	
 	public ParentGuard() {
