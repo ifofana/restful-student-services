@@ -15,9 +15,12 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIdentityReference;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 @Entity
+@JsonIdentityInfo(generator=ObjectIdGenerators.PropertyGenerator.class, property="id")
 @Table(name = "STUDENT_INFO")
 public class Student {
 
@@ -66,7 +69,7 @@ public class Student {
 	
 	@ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name="CONTACT_ID", nullable=true)
-	@JsonIgnore
+	@JsonIdentityReference(alwaysAsId=true)
 	private Contact contact;
 	
 	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
