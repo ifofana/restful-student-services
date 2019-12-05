@@ -6,7 +6,6 @@ import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -15,12 +14,13 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.JsonIdentityReference;
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
-@JsonIdentityInfo(generator=ObjectIdGenerators.PropertyGenerator.class, property="id")
 @Table(name = "STUDENT_INFO")
 public class Student {
 
@@ -69,11 +69,10 @@ public class Student {
 	
 	@ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name="CONTACT_ID", nullable=true)
-	@JsonIdentityReference(alwaysAsId=true)
 	private Contact contact;
 	
-	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-	@JoinColumn(name = "STUDENT_ID")
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "student")
+	@LazyCollection(LazyCollectionOption.FALSE)
     private Set<ParentGuard> parentGuardians;
 	
     public Student() {
@@ -209,6 +208,7 @@ public class Student {
 		this.classDay = classDay;
 	}
 
+	@JsonBackReference
 	public Contact getContact() {
 		return contact;
 	}
@@ -217,6 +217,7 @@ public class Student {
 		this.contact = contact;
 	}
 
+	@JsonManagedReference
 	public Set<ParentGuard> getParentGuardians() {
 		return parentGuardians;
 	}
