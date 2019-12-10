@@ -155,7 +155,7 @@ public class RestfulStudentServicesApplication implements CommandLineRunner {
         employee.setEmployeeAddress(employeeAddressSet);
         
         employeeRepository.save(employee);
-        System.out.println("Employee and Employee Address saved successfully!!");
+        logger.info("Employee and Employee Address saved successfully!!");
 		
 	}
 
