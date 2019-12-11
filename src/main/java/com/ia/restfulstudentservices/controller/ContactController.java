@@ -12,6 +12,7 @@ import org.slf4j.LoggerFactory;
 
 import java.net.URI;
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -27,8 +28,9 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.ia.restfulstudentservices.model.Contact;
-import com.ia.restfulstudentservices.repository.ContactRepository;
+import com.ia.restfulstudentservices.model.Student;
 import com.ia.restfulstudentservices.service.ContactService;
+import com.ia.restfulstudentservices.service.StudentService;
 
 @CrossOrigin(origins = "http://localhost:4200")
 @RestController
@@ -37,7 +39,7 @@ public class ContactController {
 	private static final Logger logger = LoggerFactory.getLogger(ContactController.class);
 	
 	@Autowired
-	ContactRepository contactRepo;
+	StudentService studentService;
 	
 	@Autowired
 	ContactService contactService;
@@ -73,9 +75,21 @@ public class ContactController {
 		
 		Contact contactCreated = contactService.saveContact(contact);
 		
+		Set<Student> cStudents = contactCreated.getStudents();
+		logger.info("cStudents.size="+cStudents.size());
+        if(cStudents != null && cStudents.size() > 0) {
+        	for (Student s : cStudents) {
+    			if(s != null) {
+    				logger.info("<<s>>:" + s.toString());
+    				s.setContactId(contactCreated.getContactId());
+    				studentService.saveStudent(s);
+    			}
+    		}
+		}
+		
 		logger.info("Contact and Contact Student saved successfully!!");
 		
-		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(contactCreated.getId( )).toUri( );
+		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(contactCreated.getContactId()).toUri( );
 		
 		return ResponseEntity.created(uri).build( );
 	}

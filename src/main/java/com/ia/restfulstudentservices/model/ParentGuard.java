@@ -1,25 +1,36 @@
 package com.ia.restfulstudentservices.model;
 
+import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
 @Entity
 @Table(name = "PARENTGUARD_INFO")
-public class ParentGuard {
+@JsonIdentityInfo(generator=ObjectIdGenerators.PropertyGenerator.class, property="parentId")
+public class ParentGuard implements Serializable {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
+	private Long parentId;
 	
 	@Column(name = "created_on")
     private Date createdOn;
@@ -66,8 +77,9 @@ public class ParentGuard {
 	@Column( name = "PG_RELATIONSHIP_TO_STUDENT")
 	private String pgRelationshipToStudent;
 	
-	@ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name="STUDENT_ID", nullable=true)
+	//bi-directional many-to-one association to Student
+	@ManyToOne(cascade = CascadeType.ALL, fetch=FetchType.LAZY)
+	@JsonBackReference
     private Student student;
 	
 	public ParentGuard() {
@@ -91,12 +103,44 @@ public class ParentGuard {
 		this.student = student;
 	}
 	
-	public Long getId() {
-		return id;
+	public Long getParentId() {
+		return parentId;
 	}
 
-	public void setId(Long id) {
-		this.id = id;
+	public void setParentId(Long parentId) {
+		this.parentId = parentId;
+	}
+
+	public Date getCreatedOn() {
+		return createdOn;
+	}
+
+	public void setCreatedOn(Date createdOn) {
+		this.createdOn = createdOn;
+	}
+
+	public String getCreatedBy() {
+		return createdBy;
+	}
+
+	public void setCreatedBy(String createdBy) {
+		this.createdBy = createdBy;
+	}
+
+	public Date getUpdatedOn() {
+		return updatedOn;
+	}
+
+	public void setUpdatedOn(Date updatedOn) {
+		this.updatedOn = updatedOn;
+	}
+
+	public String getUpdatedBy() {
+		return updatedBy;
+	}
+
+	public void setUpdatedBy(String updatedBy) {
+		this.updatedBy = updatedBy;
 	}
 
 	public String getPgName() {
@@ -187,7 +231,6 @@ public class ParentGuard {
 		this.pgRelationshipToStudent = pgRelationshipToStudent;
 	}
 	
-	@JsonBackReference
 	public Student getStudent() {
 		return student;
 	}
@@ -224,8 +267,8 @@ public class ParentGuard {
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
-		builder.append("ParentGuard [id=");
-		builder.append(id);
+		builder.append("ParentGuard [parentId=");
+		builder.append(parentId);
 		builder.append(", createdOn=");
 		builder.append(createdOn);
 		builder.append(", createdBy=");

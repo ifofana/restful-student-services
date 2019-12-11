@@ -1,32 +1,39 @@
 package com.ia.restfulstudentservices.model;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-import org.hibernate.annotations.LazyCollection;
-import org.hibernate.annotations.LazyCollectionOption;
-
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 @Entity
 @Table(name = "STUDENT_INFO")
-public class Student {
+@JsonIdentityInfo(generator=ObjectIdGenerators.PropertyGenerator.class, property="studentId")
+public class Student implements Serializable {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
+	@Column(name="STUDENT_ID")
+	private Long studentId;
 	
 	@Column(name = "created_on")
     private Date createdOn;
@@ -67,12 +74,16 @@ public class Student {
 	@Column(name = "STUDENT_CLASS_DAY")
 	private String classDay;
 	
-	@ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name="CONTACT_ID", nullable=true)
+	//bi-directional many-to-one association to Contact
+	@ManyToOne(cascade = CascadeType.ALL, fetch=FetchType.LAZY)
+	@JsonBackReference
 	private Contact contact;
 	
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "student")
-	@LazyCollection(LazyCollectionOption.FALSE)
+	private Long contactId;
+	
+	//bi-directional one-to-many association to ParentGuard
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "student", fetch = FetchType.LAZY)
+	@JsonManagedReference
     private Set<ParentGuard> parentGuardians;
 	
     public Student() {
@@ -96,12 +107,12 @@ public class Student {
 		this.parentGuardians = parentGuardians;
 	}
 
-	public Long getId() {
-		return id;
+	public Long getStudentId() {
+		return studentId;
 	}
 
-	public void setId(Long id) {
-		this.id = id;
+	public void setStudentId(Long studentId) {
+		this.studentId = studentId;
 	}
 
 	public Date getCreatedOn() {
@@ -208,7 +219,6 @@ public class Student {
 		this.classDay = classDay;
 	}
 
-	@JsonBackReference
 	public Contact getContact() {
 		return contact;
 	}
@@ -216,14 +226,35 @@ public class Student {
 	public void setContact(Contact contact) {
 		this.contact = contact;
 	}
+	
+	public Long getContactId() {
+		return contactId;
+	}
 
-	@JsonManagedReference
+	public void setContactId(Long contactId) {
+		this.contactId = contactId;
+	}
+
 	public Set<ParentGuard> getParentGuardians() {
 		return parentGuardians;
 	}
 
 	public void setParentGuardians(Set<ParentGuard> parentGuardians) {
 		this.parentGuardians = parentGuardians;
+	}
+	
+	public ParentGuard addParentGuard(ParentGuard parentGuard) {
+		getParentGuardians().add(parentGuard);
+		parentGuard.setStudent(this);
+		
+		return parentGuard;
+	}
+	
+	public ParentGuard removeParentGuard(ParentGuard parentGuard) {
+		getParentGuardians().remove(parentGuard);
+		parentGuard.setStudent(null);
+		
+		return parentGuard;
 	}
 
 //	@Override
@@ -254,8 +285,8 @@ public class Student {
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
-		builder.append("Student [id=");
-		builder.append(id);
+		builder.append("Student [studentId=");
+		builder.append(studentId);
 		builder.append(", createdOn=");
 		builder.append(createdOn);
 		builder.append(", createdBy=");

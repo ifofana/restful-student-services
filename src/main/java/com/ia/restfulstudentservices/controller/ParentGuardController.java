@@ -64,7 +64,7 @@ public class ParentGuardController {
 		
 		ParentGuard parentGuardCreated = parentGuardService.saveParentGuard(parentGuard);
 		
-		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(parentGuardCreated.getId( )).toUri( );
+		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(parentGuardCreated.getParentId()).toUri( );
 		
 		return ResponseEntity.created(uri).build( );
 	}

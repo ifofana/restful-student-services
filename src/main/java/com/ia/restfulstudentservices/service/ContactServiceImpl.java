@@ -116,21 +116,21 @@ public class ContactServiceImpl implements ContactService {
 //        c.setStudents(studentSet);
         logger.info("<<LOG>>3");
         
-//        Set<Student> sSet = c.getStudents(); 
-//        logger.info("sSet.size="+sSet.size());
-//        if(sSet != null && sSet.size() > 0) {
-//        	for (Student s : sSet) {
-//    			if(s != null)
-//    				logger.info("<<s>>:" + s.toString());
-//    			Set<ParentGuard> pSet = s.getParentGuards();
-//    				if(pSet != null && pSet.size() > 0) {
-//    					for (ParentGuard p : pSet) {
-//							if(p != null)
-//								logger.info("<<p>>:"+p.toString());
-//						}
-//    				}
-//    		}
-//		}
+        Set<Student> sSet = c.getStudents(); 
+        logger.info("sSet.size="+sSet.size());
+        if(sSet != null && sSet.size() > 0) {
+        	for (Student s : sSet) {
+    			if(s != null)
+    				logger.info("<<s>>:" + s.toString());
+    			Set<ParentGuard> pSet = s.getParentGuardians();
+    				if(pSet != null && pSet.size() > 0) {
+    					for (ParentGuard p : pSet) {
+							if(p != null)
+								logger.info("<<p>>:"+p.toString());
+						}
+    				}
+    		}
+		}
         
 		return contactRepo.save(c);
 	}

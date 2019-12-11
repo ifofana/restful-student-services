@@ -7,6 +7,7 @@
 
 package com.ia.restfulstudentservices.model;
 
+import java.io.Serializable;
 // import date class from java.util package
 import java.util.Date;
 import java.util.Set;
@@ -14,25 +15,32 @@ import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Table;
 
-import org.hibernate.annotations.LazyCollection;
-import org.hibernate.annotations.LazyCollectionOption;
-
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
 @Entity
 @Table(name = "CONTACT_INFO")
-public class Contact {
+@JsonIdentityInfo(generator=ObjectIdGenerators.PropertyGenerator.class, property="contactId")
+public class Contact implements Serializable {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
+	@Column(name="CONTACT_ID")
+	private Long contactId;
 	
 	@Column(name = "created_on")
     private Date createdOn;
@@ -61,8 +69,9 @@ public class Contact {
 	@Column(name = "CONTACT_ALT_EMAIL")
 	private String contactAltEmail;
 	
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "contact")
-	@LazyCollection(LazyCollectionOption.FALSE)
+	//bi-directional one-to-many association to Student
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "contact", fetch = FetchType.LAZY)
+	@JsonManagedReference
     private Set<Student> students;
 	
 	@Column(name = "CONTACT_RELATIONSHIP_TO_STUDENT")
@@ -83,13 +92,13 @@ public class Contact {
 		this.contactRelationshipToStudent = contactRelationshipToStudent;
 		this.students = students;
 	}
-	
-	public Long getId() {
-		return id;
+
+	public Long getContactId() {
+		return contactId;
 	}
 
-	public void setId(Long id) {
-		this.id = id;
+	public void setContactId(Long contactId) {
+		this.contactId = contactId;
 	}
 
 	public Date getCreatedOn() {
@@ -164,7 +173,6 @@ public class Contact {
 		this.contactAltEmail = contactAltEmail;
 	}
 
-	@JsonManagedReference
 	public Set<Student> getStudents() {
 		return students;
 	}
@@ -179,6 +187,20 @@ public class Contact {
 
 	public void setContactRelationshipToStudent(String contactRelationshipToStudent) {
 		this.contactRelationshipToStudent = contactRelationshipToStudent;
+	}
+	
+	public Student addStudent(Student student) {
+		getStudents().add(student);
+		student.setContact(this);
+
+		return student;
+	}
+
+	public Student removeStudent(Student student) {
+		getStudents().remove(student);
+		student.setContact(null);
+
+		return student;
 	}
 
 //	@Override
@@ -209,8 +231,8 @@ public class Contact {
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
-		builder.append("Contact [id=");
-		builder.append(id);
+		builder.append("Contact [contactId=");
+		builder.append(contactId);
 		builder.append(", createdOn=");
 		builder.append(createdOn);
 		builder.append(", createdBy=");

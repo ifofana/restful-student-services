@@ -58,7 +58,7 @@ public class StudentController {
 		
 		Student studentCreated = studentService.saveStudent(student);
 		
-		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(studentCreated.getId()).toUri();
+		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(studentCreated.getStudentId()).toUri();
 		
 		return ResponseEntity.created(uri).build();
 	}
