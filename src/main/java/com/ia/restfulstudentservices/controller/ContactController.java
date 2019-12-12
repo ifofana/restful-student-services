@@ -69,9 +69,11 @@ public class ContactController {
 	@PostMapping(path = "/api/contacts")
 	public ResponseEntity<Void> createContact(@RequestBody Contact contact){
 		
-		logger.info("createContact ====> this is a info message");
-		logger.warn("createContact ====> this is a warn message");
-		logger.error("createContact ===> this is a error message");
+		logger.info("Initiating Contact and Contact Student save...");
+//		logger.warn("createContact ====> this is a warn message");
+//		logger.error("createContact ===> this is a error message");
+		logger.info("contact ID=" + contact.getContactId());
+		logger.info(contact.toString());
 		
 		Contact contactCreated = contactService.saveContact(contact);
 		
@@ -82,14 +84,15 @@ public class ContactController {
     			if(s != null) {
     				logger.info("<<s>>:" + s.toString());
     				s.setContactId(contactCreated.getContactId());
-    				studentService.saveStudent(s);
     			}
     		}
 		}
+        
+        Contact contactUpdated = contactService.saveContact(contactCreated);
 		
 		logger.info("Contact and Contact Student saved successfully!!");
 		
-		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(contactCreated.getContactId()).toUri( );
+		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(contactUpdated.getContactId()).toUri( );
 		
 		return ResponseEntity.created(uri).build( );
 	}

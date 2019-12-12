@@ -313,6 +313,8 @@ public class Student implements Serializable {
 		builder.append(classSelection);
 		builder.append(", classDay=");
 		builder.append(classDay);
+		builder.append(", student.contactId=");
+		builder.append(contactId);
 		builder.append(", parentGuards=");
 		builder.append(parentGuardians);
 		builder.append("]");		
