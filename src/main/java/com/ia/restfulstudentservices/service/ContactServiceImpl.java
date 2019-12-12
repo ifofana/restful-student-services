@@ -7,13 +7,7 @@
 
 package com.ia.restfulstudentservices.service;
 
-import java.util.Calendar;
-import java.util.Date;
-import java.util.GregorianCalendar;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,8 +15,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.ia.restfulstudentservices.model.Contact;
-import com.ia.restfulstudentservices.model.ParentGuard;
-import com.ia.restfulstudentservices.model.Student;
 import com.ia.restfulstudentservices.repository.ContactRepository;
 
 @Service
