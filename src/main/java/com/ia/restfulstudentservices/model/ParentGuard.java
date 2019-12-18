@@ -78,6 +78,7 @@ public class ParentGuard implements Serializable {
 	private String pgRelationshipToStudent;
 	
 	//bi-directional many-to-one association to Student
+	@JoinColumn(updatable = false)
 	@ManyToOne(cascade = CascadeType.ALL, fetch=FetchType.LAZY)
 	@JsonBackReference
     private Student student;
