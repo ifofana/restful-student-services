@@ -20,10 +20,8 @@ public class StudentServiceImpl implements StudentService {
 	StudentRepository studentRepo;
 
 	@Override
-	public void deleteById(long id) {
-		
-		studentRepo.deleteById(id);
-		
+	public void deleteById(long id) {		
+		studentRepo.deleteById(id);		
 	}
 
 	@Override
@@ -39,28 +37,10 @@ public class StudentServiceImpl implements StudentService {
 	@Override
 	public List<Student> getAllStudents() {
 		return studentRepo.findAll();
-	}
-
-	@Override
-	public Student findByEmail(String email) {
-		return studentRepo.findByEmail(email).orElse(null);
-	}
-
-	@Override
-	public Page<Student> findByCourseId(long courseId, Pageable pageable) {
-		// TODO Auto-generated method stub
-		return studentRepo.findByCourseId(courseId, pageable);
-	}
-
-	@Override
-	public Optional<Student> findByIdAndCourseId(long id, long courseId) {
-		// TODO Auto-generated method stub
-		return studentRepo.findByIdAndCourseId(id, courseId);
-	}
+	}	
 
 	@Override
 	public boolean existsById(long id) {
-		// TODO Auto-generated method stub
 		return studentRepo.existsById(id);
 	}
 
