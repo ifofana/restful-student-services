@@ -27,6 +27,11 @@ import com.ia.restfulstudentservices.model.ParentGuard;
 import com.ia.restfulstudentservices.repository.ParentGuardRepository;
 import com.ia.restfulstudentservices.service.ParentGuardService;
 
+/**
+ * 
+ * @author ibrah
+ *
+ */
 @CrossOrigin(origins = "http://localhost:4200")
 @RestController
 public class ParentGuardController {
