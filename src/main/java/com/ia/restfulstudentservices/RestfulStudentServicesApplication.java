@@ -22,6 +22,12 @@ import com.ia.restfulstudentservices.model.Student;
 import com.ia.restfulstudentservices.repository.ContactRepository;
 import com.ia.restfulstudentservices.repository.EmployeeRepository;
 
+/**
+ * 
+ * @author ibrah
+ *
+ */
+
 @SpringBootApplication
 public class RestfulStudentServicesApplication implements CommandLineRunner {
 	
