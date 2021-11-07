@@ -20,7 +20,11 @@ import com.ia.restfulstudentservices.model.Student;
 import com.ia.restfulstudentservices.repository.StudentRepository;
 import com.ia.restfulstudentservices.service.StudentService;
 
-
+/**
+ * 
+ * @author ibrah
+ *
+ */
 @CrossOrigin(origins = "http://localhost:4200")
 @RestController
 public class StudentController {
