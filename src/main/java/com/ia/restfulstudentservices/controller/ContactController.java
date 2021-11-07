@@ -32,6 +32,11 @@ import com.ia.restfulstudentservices.model.Student;
 import com.ia.restfulstudentservices.service.ContactService;
 import com.ia.restfulstudentservices.service.StudentService;
 
+/**
+ * 
+ * @author ibrah
+ *
+ */
 @CrossOrigin(origins = "http://localhost:4200")
 @RestController
 public class ContactController {
