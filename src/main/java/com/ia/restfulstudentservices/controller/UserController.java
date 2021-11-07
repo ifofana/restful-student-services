@@ -17,6 +17,11 @@ import com.ia.restfulstudentservices.model.Role;
 import com.ia.restfulstudentservices.model.User;
 import com.ia.restfulstudentservices.service.UserService;
 
+/**
+ * 
+ * @author ibrah
+ *
+ */
 @CrossOrigin(origins = "http://localhost:4200")
 @RestController
 public class UserController {
