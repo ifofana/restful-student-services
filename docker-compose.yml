@@ -1,0 +1,52 @@
+version: '3.7'
+# ERROR - Removed subprocess.CalledProcessError: 
+# Command '['/usr/local/bin/docker-credential-desktop', 'get']' 
+# returned non-zero exit status 1
+
+# SOLUTION - Remove "credsStore":"desktop" from ~/.docker/config.json 
+# Original Content of ~/.docker/config.json
+# {"auths":{},"credsStore":"", "credsStore":"desktop","stackOrchestrator":"swarm"}
+# Update it to this
+# {"auths":{},"credsStore":"","stackOrchestrator":"swarm"}
+# OR
+# {"auths":{},"stackOrchestrator":"swarm"}
+services:
+  isg-weekend-school-frontend:
+    image: ifofana/weekend-school-frontend:0.0.1-SNAPSHOT
+    #build:
+      #context: frontend/isg-weekend-school-app
+      #dockerfile: Dockerfile
+    ports:
+      - "4200:80"
+    restart: always
+    depends_on: # Start the depends_on first
+      - isg-weekend-school-api 
+    networks:
+      - fullstack-application-network
+
+  isg-weekend-school-api:
+    image: restful-student-services:1.0.0-RELEASE
+    ports:
+      - "8080:8080"
+    restart: always
+    networks:
+      - fullstack-application-network
+    depends_on: # Start the depends_on first
+      - isg-mysql-db
+
+  isg-mysql-db:
+    image: mysql:8.0.18
+    restart: unless-stopped
+    environment:
+       - MYSQL_ROOT_PASSWORD=T1mbuktu
+       - MYSQL_DATABASE=dbusermanagement
+    ports:
+      - "3306:3306"
+    volumes:
+      - db:/var/lib/mysql
+    networks:
+      - fullstack-application-network
+  
+# Networks to be created to facilitate communication between containers
+networks:
+  fullstack-application-network:
