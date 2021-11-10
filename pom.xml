@@ -10,7 +10,8 @@
 	</parent>
 	<groupId>com.ia</groupId>
 	<artifactId>restful-student-services</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<!-- <version>0.0.1-SNAPSHOT</version> -->
+	<version>0.0.1-RELEASE</version>
 	<name>restful-student-services</name>
 	<description>Demo project for Spring Boot</description>
 
