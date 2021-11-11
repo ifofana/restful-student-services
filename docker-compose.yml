@@ -44,8 +44,8 @@ services:
        - MYSQL_PASSWORD=isg2021
     ports:
       - "3306:3306"
-    #volumes:
-     # - db:/var/lib/mysql
+    volumes:
+      - isg-database-volume:/var/lib/mysql
     networks:
       - fullstack-application-network
   
