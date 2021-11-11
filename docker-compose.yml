@@ -14,7 +14,7 @@ services:
   isg-weekend-school-frontend:
     image: ifofana/weekend-school-frontend:2.0.0.RELEASE
     #build:
-      #context: frontend/isg-weekend-school-app
+      #context: ITTrainings
       #dockerfile: Dockerfile
     ports:
       - "4200:80"
