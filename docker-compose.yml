@@ -12,7 +12,7 @@ version: '3.7'
 # {"auths":{},"stackOrchestrator":"swarm"}
 services:
   isg-weekend-school-frontend:
-    image: ifofana/weekend-school-frontend:1.0.0.RELEASE
+    image: ifofana/weekend-school-frontend:2.0.0.RELEASE
     #build:
       #context: frontend/isg-weekend-school-app
       #dockerfile: Dockerfile
@@ -25,7 +25,7 @@ services:
       - fullstack-application-network
 
   isg-weekend-school-api:
-    image: ifofana/restful-student-services:1.0.0-RELEASE
+    image: ifofana/restful-student-services:2.0.0-RELEASE
     ports:
       - "8080:8080"
     restart: always
