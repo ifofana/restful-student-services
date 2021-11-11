@@ -1,7 +1,7 @@
 {
 	"AWSEBDockerrunVersion": "1",
 	"Image": {
-		"Name": "ifofana/restful-student-services:1.0.0.RELEASE",
+		"Name": "ifofana/restful-student-services:1.0.0-RELEASE",				
 		"Update": "true"
 	},
 	"Ports": [

@@ -13,9 +13,9 @@ version: '3.7'
 services:
   isg-weekend-school-frontend:
     image: ifofana/weekend-school-frontend:1.0.0.RELEASE
-    build:
-      context: frontend/isg-weekend-school-app
-      dockerfile: Dockerfile
+    #build:
+      #context: frontend/isg-weekend-school-app
+      #dockerfile: Dockerfile
     ports:
       - "4200:80"
     restart: always
@@ -40,10 +40,12 @@ services:
     environment:
        - MYSQL_ROOT_PASSWORD=T1mbuktu
        - MYSQL_DATABASE=dbusermanagement
+       - MYSQL_USER=isg-user
+       - MYSQL_PASSWORD=isg2021
     ports:
       - "3306:3306"
-    volumes:
-      - db:/var/lib/mysql
+    #volumes:
+     # - db:/var/lib/mysql
     networks:
       - fullstack-application-network
   
