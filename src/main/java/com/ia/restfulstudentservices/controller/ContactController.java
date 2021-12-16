@@ -32,7 +32,7 @@ import com.ia.restfulstudentservices.model.Student;
 import com.ia.restfulstudentservices.service.ContactService;
 import com.ia.restfulstudentservices.service.StudentService;
 
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins = "http://angular-project-isg.s3-website-us-east-1.amazonaws.com:4200")
 @RestController
 public class ContactController {
 	
