@@ -21,7 +21,9 @@ import com.ia.restfulstudentservices.repository.StudentRepository;
 import com.ia.restfulstudentservices.service.StudentService;
 
 
-@CrossOrigin(origins = "http://angular-project-isg.s3-website-us-east-1.amazonaws.com:4200")
+@CrossOrigin(origins = 
+"http://angular-project-isg.s3-website-us-east-1.amazonaws.com:4200")
+//@CrossOrigin(origins = "http://localhost:4200")
 @RestController
 public class StudentController {
 	

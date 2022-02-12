@@ -27,7 +27,9 @@ import com.ia.restfulstudentservices.model.ParentGuard;
 import com.ia.restfulstudentservices.repository.ParentGuardRepository;
 import com.ia.restfulstudentservices.service.ParentGuardService;
 
-@CrossOrigin(origins = "http://angular-project-isg.s3-website-us-east-1.amazonaws.com:4200")
+@CrossOrigin(origins = 
+"http://angular-project-isg.s3-website-us-east-1.amazonaws.com:4200")
+//@CrossOrigin(origins = "http://localhost:4200")
 @RestController
 public class ParentGuardController {
 	

@@ -8,7 +8,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.ia.restfulstudentservices.service.UserService;
 
-@CrossOrigin(origins = "http://angular-project-isg.s3-website-us-east-1.amazonaws.com:4200")
+@CrossOrigin(origins = 
+"http://angular-project-isg.s3-website-us-east-1.amazonaws.com:4200")
+//@CrossOrigin(origins = "http://localhost:4200")
 @RestController
 public class AdminController {
 	

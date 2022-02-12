@@ -17,7 +17,9 @@ import com.ia.restfulstudentservices.model.Role;
 import com.ia.restfulstudentservices.model.User;
 import com.ia.restfulstudentservices.service.UserService;
 
-@CrossOrigin(origins = "http://angular-project-isg.s3-website-us-east-1.amazonaws.com:4200")
+@CrossOrigin(origins = 
+"http://angular-project-isg.s3-website-us-east-1.amazonaws.com:4200")
+//@CrossOrigin(origins = "http://localhost:4200")
 @RestController
 public class UserController {
 	 
